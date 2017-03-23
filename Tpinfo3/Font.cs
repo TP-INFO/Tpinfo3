@@ -18,6 +18,7 @@ namespace Tpinfo3 {
     public int SPACEWIDTH { get; set; }
     public char StarChar { get; set; }
     public char EndChar { get; set; }
+    public int HIGH { get; set; }
 
 
     public List<Character> _chars = new List<Character>();
@@ -49,13 +50,17 @@ namespace Tpinfo3 {
 
   }
 
-  struct Character {
+  class Character {
 
     public int WIDTH { get; set; }
     public int HIGHT { get; set; }
     public char CHAR { get; set; }
 
-    public char[,] _content;
+    public char[,] _content = null;
+
+    public Character() {
+
+    }
 
     public Character(int width, int hight, char c) {
       WIDTH = width;

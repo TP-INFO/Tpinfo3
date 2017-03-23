@@ -137,8 +137,6 @@ namespace Tpinfo3 {
         DrawChar(tmpChar, XCursor, YCursor);
         XCursor += (tmpChar.WIDTH + f.SPACEWIDTH); // update XCursor
 
-
-
       }
 
     }
