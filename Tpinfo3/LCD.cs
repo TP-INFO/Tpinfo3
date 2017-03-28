@@ -29,6 +29,7 @@ namespace Tpinfo3 {
 
     private Cursor _cursor = new Cursor();
     private char[,] _buffer;
+    //private char FullPixelChar = '\u0187';  // TODO: 
     private char FullPixelChar = '#';  // TODO: 
     private char EmptyPixelChar = ' ';
 
@@ -101,7 +102,7 @@ namespace Tpinfo3 {
       // copy the character contents to the buffer 
       for (int i = 0; i < c.WIDTH; i++) {
         for (int j = 0; j < c.HIGHT; j++) {
-          if (c._content[j, i] == FullPixelChar) {
+          if (c._content[j, i] != ' ') {  // TODO: treat FullPixelChar at the parse font level
             DrawPixel(i + XCursor, j + YCursor, PixelColor.Black);
           }
           else {

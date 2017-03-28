@@ -13,8 +13,14 @@ namespace Tpinfo3
     static void Main(string[] args)
     {
 
-      //file path 
-      string path = @"C:\Users\34011-36-05\Source\Repos\Tpinfo3\FontDefinitions.txt";
+      //Font defintion file
+      string fileName = @"FontDefinitions.txt";
+      
+      DirectoryInfo dir = new DirectoryInfo(Directory.GetCurrentDirectory());
+      Console.WriteLine(dir.Parent.FullName);
+      string path = dir.Parent.FullName + "\\" + fileName; 
+      
+      
 
       if (!File.Exists(path))
       {
@@ -26,7 +32,7 @@ namespace Tpinfo3
 
       
 
-      LCD lcd = new LCD(64, 64);
+      LCD lcd = new LCD(80, 80);
                   
       for (int i = 0; i < lcd.WIDTH; i++) {
         for (int j = 0; j < lcd.HIGHT; j++) {
@@ -39,7 +45,7 @@ namespace Tpinfo3
       lcd.Display();
 
       
-      lcd.DrawText(f, "0123AB/CDabcd", 0, 0);
+      lcd.DrawText(f, "Mike is dangerous", 0, 0);
       lcd.Display();
 
 
