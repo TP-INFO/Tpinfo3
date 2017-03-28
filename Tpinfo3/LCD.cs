@@ -47,7 +47,7 @@ namespace Tpinfo3 {
       HIGHT = 48;
       XCursor = 0;
       YCursor = 0;
-      _buffer = new char[WIDTH, HIGHT];
+      _buffer = new char[HIGHT, WIDTH];
     }
 
     public LCD(int width, int hight) {
@@ -66,7 +66,7 @@ namespace Tpinfo3 {
     /// <param name="c"><value> Black or White</value></param>
     public void DrawPixel(int x, int y, PixelColor c) {
       if (x >= 0 && x < WIDTH && y >= 0 && y < HIGHT)
-        _buffer[x, y] = (c == PixelColor.Black) ? FullPixelChar : EmptyPixelChar;
+        _buffer[y, x] = (c == PixelColor.Black) ? FullPixelChar : EmptyPixelChar;
 
 
       // draw pixel
@@ -83,6 +83,7 @@ namespace Tpinfo3 {
       for (int i = 0; i < HIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
           Console.Write(_buffer[i, j]);
+          //Console.Write('#');
         }
         Console.WriteLine();
       }
@@ -98,22 +99,16 @@ namespace Tpinfo3 {
 
     public void DrawChar(Character c) {
       // copy the character contents to the buffer 
-      for (int i = 0; i < c.HIGHT; i++) {
-        for (int j = 0; j < c.WIDTH; j++) {
-          //DrawPixel(XCursor + i, YCursor + j, )
-          if (c._content[i, j] == FullPixelChar) {
-            DrawPixel(i + YCursor, j + XCursor, PixelColor.Black);
+      for (int i = 0; i < c.WIDTH; i++) {
+        for (int j = 0; j < c.HIGHT; j++) {
+          if (c._content[j, i] == FullPixelChar) {
+            DrawPixel(i + XCursor, j + YCursor, PixelColor.Black);
           }
           else {
-            DrawPixel(i + YCursor, j + XCursor, PixelColor.White);
+            DrawPixel(i + XCursor, j + YCursor, PixelColor.White);
           }
         }
-
       }
-
-
-
-
     }
 
     public void DrawChar(Character c, int xpos, int ypos) {
@@ -127,8 +122,8 @@ namespace Tpinfo3 {
       YCursor = ypos;
       Character tmpChar;
       for (int i = 0; i < s.Length; i++) {
-        tmpChar = f._chars[s[i] - f.StarChar]; // get the current character from the char set
-
+        tmpChar = GetCharFromFont(f, s[i]); // get the current character from the char set
+         
         if (WIDTH - XCursor < tmpChar.WIDTH) { // is there enough space for the next character. we can split words
           XCursor = 0;
           YCursor += tmpChar.HIGHT;
@@ -138,8 +133,42 @@ namespace Tpinfo3 {
         XCursor += (tmpChar.WIDTH + f.SPACEWIDTH); // update XCursor
 
       }
-
     }
+    /// <summary>
+    /// Function that parses a character and returns the corresponding Character bitmap
+    /// and definition (Character type)
+    /// </summary>
+    /// <param name="f"><value>font used for the current text </value></param>
+    /// <param name="c"><value> ascci character </value></param>
+    /// <returns></returns>
+
+    private Character GetCharFromFont(Font f, char c) {
+
+      if (Char.IsDigit(c)) {
+        return f._chars[c - '0'];
+      }
+      else if (char.IsLetter(c)) {
+        // is it uppercase ?
+        if (char.IsLower(c))
+          return f._chars[c - 'a' + 37];
+        else
+          return f._chars[c - 'A' + 11];
+      }
+      else   // default character representing unknown char 
+        return f._chars[10];   // ? in this case  
+    }
+
+
+
+    public void Clear() {
+      for (int i = 0; i < HIGHT; i++) {
+        for (int j = 0; j < WIDTH; j++) {
+          _buffer[i, j] = EmptyPixelChar;
+        }
+      }
+    }
+
+
 
   }
 }

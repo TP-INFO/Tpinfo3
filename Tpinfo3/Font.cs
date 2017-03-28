@@ -16,7 +16,7 @@ namespace Tpinfo3 {
     public Character STARTCHAR { get; set; }
     public Character ENDCHAR { get; set; }
     public int SPACEWIDTH { get; set; }
-    public char StarChar { get; set; }
+    public char StartChar { get; set; }
     public char EndChar { get; set; }
     public int HIGH { get; set; }
 
@@ -34,7 +34,7 @@ namespace Tpinfo3 {
       SPACEWIDTH = spaceWidth;
       //_chars.Insert(0, startChar);
       //_chars.Add(endChar);
-      StarChar = startChar.CHAR;
+      StartChar = startChar.CHAR;
       EndChar = endChar.CHAR;
     }
 
