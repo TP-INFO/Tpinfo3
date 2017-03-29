@@ -159,12 +159,18 @@ namespace Tpinfo3 {
         return f._chars[10];   // ? in this case  
     }
 
-
-
     public void Clear() {
       for (int i = 0; i < HIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
           _buffer[i, j] = EmptyPixelChar;
+        }
+      }
+    }
+
+    public void Fill() {
+      for (int i = 0; i < WIDTH; i++) {
+        for (int j = 0; j < HIGHT; j++) {
+          DrawPixel(i, j, PixelColor.Black);
         }
       }
     }

@@ -188,51 +188,13 @@ namespace Tpinfo3 {
 
           } while (strLine != "EndBitmaps");
 
-
           return f;
-
         }
         catch (Exception e) {
           Console.WriteLine(e.Message);
           return null;
-        }
-         
+        }  
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     /// <summary>
@@ -257,10 +219,7 @@ namespace Tpinfo3 {
       }
       //Console.WriteLine();
     }
-    
+ 
 
-
-
-    
-  }
+  }// end FontUtils
 }
