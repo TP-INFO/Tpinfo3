@@ -104,22 +104,6 @@ namespace Tpinfo3
 
             Console.WriteLine();
 
-            //WriteAt("#", 1, 3);
-            //WriteAt("#", 1, 4);
-            //WriteAt("#", 1, 5);
-            //WriteAt("#", 1, 6);
-            //WriteAt("#", 1, 7);
-            //WriteAt("#", 1, 8);
-
-            //Console.WriteLine();
-
-            //WriteAt("0", 3, 1);
-            //WriteAt("0", 4, 1);
-            //WriteAt("0", 5, 1);
-            //WriteAt("0", 6, 1);
-            //WriteAt("0", 7, 1);
-            //WriteAt("0", 8, 1);
-
             #endregion
 
         }//End of Main
